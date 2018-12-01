@@ -13,7 +13,7 @@ spring:
     spring.datasource.password:
 
 server:
-  port: 8080
+  port: 8089
   tomcat:
     uri-encoding: utf-8
 

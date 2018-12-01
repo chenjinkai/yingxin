@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingxin.tec.mapper.AppointmentMapper">
+
+    <select id="latestAppointments" resultType="com.yingxin.tec.model.Appointment">
+				select id, username, phone, appointmentdate, city, district, address, description, ip, status ,updatedat,createdat from appointment order by createdat desc
+	</select>
+
+    <insert id="insert" parameterType="com.yingxin.tec.model.Appointment">
+		insert into appointment(id,username,phone,appointmentdate,city,district,address,description,ip,status,updatedat,createdat) values (#{appointment.id}, #{appointment.username}, #{appointment.phone}, #{appointment.appointmentdate}, #{appointment.city}, #{appointment.district}, #{appointment.address}, #{appointment.description}, #{appointment.ip}, #{appointment.status}, )
+	</insert>
+
+    <update id="update" parameterType="com.yingxin.tec.model.Appointment">
+		update appointment set username=#{appointment.username}, phone=#{appointment.phone}, appointmentdate=#{appointment.appointmentdate}, city=#{appointment.city}, district=#{appointment.district}, address=#{appointment.address}, description=#{appointment.description}, ip=#{appointment.ip}, status=#{appointment.status},  
+		where id=#{appointment.id}
+	</update>
+
+    <delete id="delete" parameterType="com.yingxin.tec.model.Appointment">
+		delete from appointment 
+		where id=#{appointment.id}
+	</delete>
+
+    <select id="count" parameterType="map" resultType="java.math.BigInteger">
+		select count(0) count from appointment 
+		where 1 = 1
+	</select>
+    <select id="query" parameterType="map" resultType="com.yingxin.tec.model.Appointment">
+		select id, username, phone, appointmentdate, city, district, address, description, ip, status,  from appointment 
+		where 1 = 1
+		limit #{start}, #{length}
+	</select>
+</mapper>

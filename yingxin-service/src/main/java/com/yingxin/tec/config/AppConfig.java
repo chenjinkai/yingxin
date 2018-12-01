@@ -6,6 +6,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
@@ -25,4 +27,5 @@ public class AppConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "DELETE", "PUT")
                 .maxAge(3600);
     }
+
 }
