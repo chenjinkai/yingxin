@@ -5,7 +5,6 @@ import com.yingxin.tec.model.Appointment;
 import com.yingxin.tec.model.DatatableQuery;
 import com.yingxin.tec.model.DatatableRequest;
 import com.yingxin.tec.service.AppointmentService;
-import com.yingxin.tec.util.HttpUtil;
 import com.yingxin.tec.validator.ValidateResponseFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -32,12 +31,12 @@ public class AppointmentController {
         if (binding.hasErrors()) {
             return ValidateResponseFactory.createValidateFailureResponse(binding);
         }
-        return HttpUtil.getJSONPResponse(appointmentService.getTableData(datatableRequest), true, request, response);
+        return null;
     }
 
-    @RequestMapping(value = "/appointments2", method = {RequestMethod.GET})
+    @RequestMapping(value = "/getLatestAppointments", method = {RequestMethod.GET})
     @ResponseBody
-    public Object getLatestAppointment() {
+    public Object getLatestAppointments() {
         return appointmentService.getLatestData();
     }
 
@@ -50,7 +49,7 @@ public class AppointmentController {
         if (binding.hasErrors()) {
             return ValidateResponseFactory.createValidateFailureResponse(binding);
         }
-        return HttpUtil.getJSONPResponse(appointmentService.add(appointment), true, request, response);
+        return appointmentService.add(appointment);
     }
 
     @RequestMapping(value = "/appointments", method = {RequestMethod.PUT})
@@ -62,7 +61,7 @@ public class AppointmentController {
         if (binding.hasErrors()) {
             return ValidateResponseFactory.createValidateFailureResponse(binding);
         }
-        return HttpUtil.getJSONPResponse(appointmentService.update(appointment), true, request, response);
+        return appointmentService.update(appointment);
     }
 
     @RequestMapping(value = "/appointments/{id}", method = {RequestMethod.DELETE})
@@ -70,7 +69,7 @@ public class AppointmentController {
     public Object delete(@PathVariable(value = "id") BigInteger id,
                          HttpServletRequest request,
                          HttpServletResponse response) throws BusinessException {
-        return HttpUtil.getJSONPResponse(appointmentService.delete(id), true, request, response);
+        return appointmentService.delete(id);
     }
 
 }

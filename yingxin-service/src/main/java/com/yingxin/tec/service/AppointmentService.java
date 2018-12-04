@@ -3,7 +3,6 @@ package com.yingxin.tec.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.yingxin.tec.exception.BusinessException;
-import com.yingxin.tec.factory.ResponseFactory;
 import com.yingxin.tec.mapper.AppointmentMapper;
 import com.yingxin.tec.model.Appointment;
 import com.yingxin.tec.model.DatatableRequest;
@@ -30,7 +29,7 @@ public class AppointmentService {
         } catch (Exception e) {
             throw new BusinessException("增加预约失败", e);
         }
-        return ResponseFactory.createSuccessResponserFactory("增加预约成功");
+        return ResultResponse.OK.setMsg("增加预约成功");
     }
 
     @Transactional
@@ -42,7 +41,7 @@ public class AppointmentService {
         } catch (Exception e) {
             throw new BusinessException("删除预约失败", e);
         }
-        return ResponseFactory.createSuccessResponserFactory("删除预约成功");
+        return ResultResponse.OK.setMsg("删除预约成功");
     }
 
     @Transactional
@@ -52,11 +51,11 @@ public class AppointmentService {
         } catch (Exception e) {
             throw new BusinessException("更新预约失败", e);
         }
-        return ResponseFactory.createSuccessResponserFactory("更新预约成功");
+        return ResultResponse.OK.setMsg("更新预约成功");
     }
 
-    public List<Appointment> getLatestData() {
-        return appointmentMapper.latestAppointments();
+    public ResultResponse getLatestData() {
+        return ResultResponse.OK.setData(appointmentMapper.latestAppointments());
     }
 
     @Transactional
