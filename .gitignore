@@ -1,3 +1,5 @@
 target/**
 yingxin-service/target/**
 .idea/**
+*.iml
+yingxin-service/*.iml
