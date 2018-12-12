@@ -19,6 +19,10 @@
         <servlet.version>3.0.1</servlet.version>
         <tomcat.jdbc.version>7.0.30</tomcat.jdbc.version>
         <h2.version>1.4.197</h2.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
